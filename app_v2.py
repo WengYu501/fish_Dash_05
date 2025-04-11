@@ -132,8 +132,27 @@ def update_backtest(start_date, end_date, ticker):
 if __name__ == '__main__':
     
 import os
+import dash
+from dash import dcc, html
 
+# 初始化 app
+app = dash.Dash(__name__)
+server = app.server  # 給 Render 用的 WSGI server 接入點
+
+# 簡單首頁
+app.layout = html.Div([
+    html.H1("🐾 Hello from Render!"),
+    dcc.Graph(
+        figure={
+            "data": [{"x": [1, 2, 3], "y": [4, 1, 2], "type": "bar"}],
+            "layout": {"title": "Sample Graph"},
+        }
+    )
+])
+
+# ✅ 正確綁定 host & port
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8050))  # Render 會給你 PORT 環境變數
-    app.run(host="0.0.0.0", port=port, debug=False)
+    port = int(os.environ.get("PORT", 8050))  # Render 會自動設 PORT
+    app.run_server(host="0.0.0.0", port=port)
+
 

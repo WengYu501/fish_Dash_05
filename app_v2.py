@@ -130,4 +130,10 @@ def update_backtest(start_date, end_date, ticker):
     return dcc.Graph(figure=fig)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8050))  # Render 會給你 PORT 環境變數
+    app.run(host="0.0.0.0", port=port, debug=False)
+

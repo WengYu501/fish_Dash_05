@@ -130,8 +130,7 @@ def update_backtest(start_date, end_date, ticker):
     return dcc.Graph(figure=fig)
 
 if __name__ == '__main__':
-    
-import os
+    import os
 import dash
 from dash import dcc, html
 
